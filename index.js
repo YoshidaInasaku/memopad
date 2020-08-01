@@ -1,6 +1,9 @@
 'use strict';
 
 const http = require('http');
+const moment = require('moment')
+
+const today = moment(new Date()).format('YYYY/MM/DD hh:mm:ss');
 
 const server = http.createServer( (req, res) => {
   res.writeHead(200, {
@@ -12,5 +15,5 @@ const server = http.createServer( (req, res) => {
 
 const port = 8000;
 server.listen(port, () => {
-  console.log('サーバーに接続されrました');
-})
+  console.info(today + ':Listening on ' + port)
+});
