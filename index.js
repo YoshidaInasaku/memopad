@@ -2,8 +2,9 @@
 
 const http = require('http');    // http モジュールのインポート
 const pug = require('pug');    // pug のインポート
-
 const moment = require('moment')    // 時間を扱う moment.jsのインポート
+
+const router = require('./lib/router');    // ルーティング処理を行っているファイルをインポート
 
 const today = moment(new Date()).format('YYYY/MM/DD HH:mm:ss');    // 本日の日付を取得
 
@@ -12,8 +13,7 @@ const server = http.createServer( (req, res) => {
   res.writeHead(200, {
     'Content-Type': 'text/plain; charset=utf-8'    // サーバーを立てた際は writeheadでステータスコードと、res として返すデータ型を規程させる
   });
-  res.write(req.connection.remoteAddress + ': ' +'Hello World!');    // 画面に表示させる
-  res.end(); 
+  router.route(req, res);    // ルーティング処理
 })
 .on('error', (e) => {
   console.error('[' + today + ']' + 'Server Error: ' + e);    // error　イベントが発生したら サーバーエラーの内容をログとして表示
