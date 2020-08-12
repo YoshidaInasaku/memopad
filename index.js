@@ -6,6 +6,7 @@ const router = require('./lib/router');    // ルーティング処理を行っ�
 
 const today = moment(new Date()).format('YYYY/MM/DD HH:mm:ss');    // 本日の日付を取得
 
+
 // サーバーを設置
 const server = http.createServer( (req, res) => {
   router.route(req, res);    // ルーティング処理
