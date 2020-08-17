@@ -24,14 +24,16 @@ html(lang="ja")
       .modal-dialog(role="document")
         .modal-content
           .modal-header
-            h5#postModalLabel.modal-title Your Post
+            h5#postModalLabel.modal-title Push Your Knowledge!
             button.close(type="button" data-dismiss="modal" aria-label="Close")
               span(aria-hidden="true") ×
           .modal-body
-            | Push Your Knowledge!
+            form.form-group(method="post" action="/posts")
+              label.col-form-label(for="message-text") Content：
+              textarea#message-text.form-control 
           .modal-footer
             button.btn.btn-secondary(type="button" data-dismiss="modal") Close
-            button.btn.btn-primary(type="button") Save changes
+            button.btn.btn-primary(type="submit") Push Content
 
     //JavaScript
     script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
@@ -40,8 +42,11 @@ html(lang="ja")
     crossorigin="anonymous")
 
     script.
-      function() {
-        ('#postModalButton').modal();
-      };
+      // モーダルウインドウの初期化
+      ("#postModal").modal();
 
+      // ToDo: 投稿した際の挙動
+      function consoleWindow() {
+        console.info( (".form-group").val() );
+      };
     
